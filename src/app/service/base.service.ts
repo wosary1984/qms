@@ -24,7 +24,7 @@ export class BaseService {
         return this.http.post( url, data, { observe: 'response', withCredentials: true } )
             .toPromise()
             .then( res => {
-                const status: number = res.status;
+                const status: number = res.status; 
                 if ( status === 200 ) {
                     const back = {
                         code: status,
