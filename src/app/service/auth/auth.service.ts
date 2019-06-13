@@ -17,61 +17,68 @@ export class AuthService extends BaseService {
         this.servicename = 'AuthService-用户权限服务';
     }
 
-    public loginWithCredentials( username: string, password: string ): Promise<Auth> {
+    public async loginWithCredentials( username: string, password: string ): Promise<Auth> {
         // return this.userService
-        return this.login( username, password )
-            .then( back => {
-                this.userAuth = Object.assign( {}, this.createAuth( back ) );
-                return this.userAuth;
-            } )
-            .catch(( error: any ) => this.handleError( 'loginWithCredentials', error ) );
+        try {
+            const back = await this.login(username, password);
+            this.userAuth = Object.assign({}, this.createAuth(back));
+            return this.userAuth;
+        }
+        catch (error) {
+            return await this.handleError('loginWithCredentials', error);
+        }
     }
 
-    private login( username: string, password: string ): Promise<BackMessage> {
+    private async login( username: string, password: string ): Promise<BackMessage> {
         const url = `${ConstantsList.host}/${ConstantsList.appname}/api/session/login`;
         let user = {
             "username": username,
             "password": password
         };
-        return this.http.post( url, JSON.stringify( user ), { observe: 'response', withCredentials: true } )
-            .toPromise()
-            .then( res => {
-                const status: number = res.status; // SSM框架返回的状态
-                if ( status === 200 ) { // 服务端正确执行
-                    let back = res.body as BackMessage;
-
-                    if ( res.headers.get( 'X-CSRF-TOKEN' ) != null ) {
-                        back.xsrfToken = res.headers.get( 'X-CSRF-TOKEN' );
-                    }
-                    return back;
-                } else {
-                    const back: BackMessage = new BackMessage();
-                    back.code = -1 
-                    return back;
+        try {
+            const res = await this.http.post(url, JSON.stringify(user), { observe: 'response', withCredentials: true })
+                .toPromise();
+            const status: number = res.status; // SSM框架返回的状态
+            if (status === 200) { // 服务端正确执行
+                let back = (res.body as BackMessage);
+                if (res.headers.get('X-CSRF-TOKEN') != null) {
+                    back.xsrfToken = res.headers.get('X-CSRF-TOKEN');
                 }
-            } )
-            .catch(( error: any ) => this.handleError( 'login', error ) );
+                return back;
+            }
+            else {
+                const back_1: BackMessage = new BackMessage();
+                back_1.code = -1;
+                return back_1;
+            }
+        }
+        catch (error) {
+            return await this.handleError('login', error);
+        }
     }
 
-    public logout(): Promise<BackMessage> {
+    public async logout(): Promise<BackMessage> {
         const url = `${ConstantsList.host}/${ConstantsList.appname}/api/session/logout`;
         const headers = new HttpHeaders().set( "Content-Type", "application/json;charset=UTF-8" );
-        return this.http.get( url, { observe: 'response', withCredentials: true } )
-            .toPromise()
-            .then( res => {
-                const status: number = res.status;
-                console.log( "response:", res.body );
-                this.userAuth = null;
-                // 服务端正确执行
-                if ( status === 200 ) {
-                    return res.body as BackMessage;
-                } else {
-                    const back: BackMessage = new BackMessage();
-                    back.code = -1
-                    return back;
-                }
-            } )
-            .catch(( error: any ) => this.handleError( 'logout', error ) );
+        try {
+            const res = await this.http.get(url, { observe: 'response', withCredentials: true })
+                .toPromise();
+            const status: number = res.status;
+            console.log("response:", res.body);
+            this.userAuth = null;
+            // 服务端正确执行
+            if (status === 200) {
+                return res.body as BackMessage;
+            }
+            else {
+                const back: BackMessage = new BackMessage();
+                back.code = -1;
+                return back;
+            }
+        }
+        catch (error) {
+            return await this.handleError('logout', error);
+        }
     }
 
     public checkSession(): Promise<Auth> {

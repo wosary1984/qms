@@ -106,12 +106,12 @@ export class BaseService {
             .catch(( error: any ) => this.handleError( functionName, error ) );
     }
 
-    protected navigateToLogin( router: Router, redirectUrl: string ) {
+    public navigateToLogin( router: Router, redirectUrl: string ) {
         sessionStorage.setItem( 'redirectUrl', redirectUrl );
         router.navigate( ['/login'] );
     }
 
-    protected navigateToError( router: Router, title: string, message: string ) {
+    public navigateToError( router: Router, title: string, message: string ) {
         router.navigate( ['/error'], {
             queryParams: {
                 title: title,

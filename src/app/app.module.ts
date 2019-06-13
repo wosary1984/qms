@@ -9,6 +9,7 @@ import { SpinnerComponent } from 'src/app/shared/spinner.component';
 import { LoginComponent } from 'src/app/shared/login/login.component';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { HttpClientModule } from "@angular/common/http";
+import { AuthGuardService } from './service/auth/auth-guard.service';
 
 @NgModule( {
     declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from "@angular/common/http";
         HttpClientModule
     ],
     providers: [
+        AuthGuardService,
         { provide: 'auth', useClass: AuthService }
     ],
     bootstrap: [AppComponent]
