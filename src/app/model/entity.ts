@@ -21,7 +21,7 @@ export class BackMessage {
 
   action: string;
   code: number;
-  success: boolean;
+  status: string;
   data: {
     userName: string;
     isLogged: boolean;

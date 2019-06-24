@@ -45,3 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 xs-syncer.log
+
+#AdminLTE-2.4.12
+src/assets/AdminLTE-2.4.12/*

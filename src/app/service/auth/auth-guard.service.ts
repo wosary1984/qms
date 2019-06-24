@@ -33,6 +33,7 @@ export class AuthGuardService implements CanActivate {
                 }
             })
             .catch((error: any) => {
+                this.service.navigateToLogin(this.router, '/');
                 return false;
             });
 

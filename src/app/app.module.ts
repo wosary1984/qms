@@ -8,8 +8,9 @@ import { AppComponent } from './app.component';
 import { SpinnerComponent } from 'src/app/shared/spinner.component';
 import { LoginComponent } from 'src/app/shared/login/login.component';
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuardService } from './service/auth/auth-guard.service';
+import { HttpxsrfinterceptorService } from './service/xsr/httpxsrfinterceptor.service';
 
 @NgModule( {
     declarations: [
@@ -25,7 +26,8 @@ import { AuthGuardService } from './service/auth/auth-guard.service';
     ],
     providers: [
         AuthGuardService,
-        { provide: 'auth', useClass: AuthService }
+        { provide: 'auth', useClass: AuthService },
+        { provide: HTTP_INTERCEPTORS, useClass: HttpxsrfinterceptorService, multi: true }
     ],
     bootstrap: [AppComponent]
 } )

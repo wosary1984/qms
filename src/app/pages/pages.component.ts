@@ -17,10 +17,6 @@ export class PageComponent implements OnInit, AfterViewInit {
     if (this.router.url === '/') {
       //this.router.navigate(['/starter']);
     }
-    
-    $(document).ready(() => {
-      $('body').layout('fix');
-    });
   }
 
 }

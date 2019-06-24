@@ -18,7 +18,7 @@ export class HttpxsrfinterceptorService implements HttpInterceptor {
         const headerName = 'X-CSRF-TOKEN';
 
         if (req.method == 'POST' || req.method == 'PUT') {
-            if (this.service.userAuth != null) {
+            if (this.service.userAuth != null && this.service.userAuth.xsrfToken ) {
                 let token = this.service.userAuth.xsrfToken;
                 if (token !== null && !req.headers.has(headerName)) {
                     req = req.clone({ headers: req.headers.set(headerName, token) });
@@ -26,9 +26,7 @@ export class HttpxsrfinterceptorService implements HttpInterceptor {
             }
         }
 
-        return next
-        .handle(req)
-        .pipe(
+        return next.handle(req).pipe(
           tap((event: HttpEvent<any>) => {
             if (event instanceof HttpResponse) {
                 // do stuff with response if you want
