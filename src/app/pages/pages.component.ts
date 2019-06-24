@@ -1,6 +1,6 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
-declare var $:any;
+import * as $ from 'jquery';
 @Component({
   selector: 'app-layout',
   templateUrl: './pages.component.html',
