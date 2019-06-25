@@ -1,6 +1,6 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
-import * as $ from 'jquery';
+declare var $:any;
 @Component({
   selector: 'app-layout',
   templateUrl: './pages.component.html',
@@ -17,6 +17,10 @@ export class PageComponent implements OnInit, AfterViewInit {
     if (this.router.url === '/') {
       //this.router.navigate(['/starter']);
     }
+
+    $(document).ready(() => {
+      $('body').layout('fix');
+    });
   }
 
 }

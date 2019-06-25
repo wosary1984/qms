@@ -10,6 +10,9 @@ import { Subscription } from "rxjs";
 } )
 export class HeaderComponent implements OnInit {
 
+    private logomin='Q';
+    private logolg = 'QMS';
+
     private username = '';
     private oReceivedMsg;
     private aMessages = [];

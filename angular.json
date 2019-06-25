@@ -40,6 +40,7 @@
               "node_modules/admin-lte/plugins/jQueryUI/jquery-ui.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/admin-lte/dist/js/adminlte.js"
+             
             ]
           },
           "configurations": {
