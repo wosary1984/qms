@@ -19,26 +19,30 @@
 			</span>
 	      </div>
 	    </form>
-    
+	
+	    <!-- Toolbar Menu Navigation -->
 		<ul class="sidebar-menu" data-widget="tree">
-			<li class="header">导航目录</li>
-			<li *ngFor="let treemenu of treeMenus" class="treeview" [ngClass]="{'active':showMenu === treemenu.privilege.fid, 'menu-open':showMenu ===treemenu.privilege.fid}">
-				<a *ngIf="treemenu.privilege.subview" (click)="addExpandClass(treemenu.privilege.fid)">
-					<i class={{treemenu.privilege.icon}}></i> 
-					<span>{{treemenu.privilege.name}}</span> 
-					<span *ngIf="treemenu.privilege.subview" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
-				</a>
-				<a *ngIf="!treemenu.privilege.subview" routerLink="{{treemenu.privilege.link}}" (click)="addExpandClass(treemenu.privilege.fid)">
-					<i class={{treemenu.privilege.icon}}></i> 
-					<span>{{treemenu.privilege.name}}</span> 
-					<span *ngIf="treemenu.privilege.subview" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
-				</a>
-				<ul class="treeview-menu">
-					<li *ngFor="let menu of treemenu.privilege.childs" [ngClass]="{'active':check === menu.fid}">
-						<a routerLink="{{menu.link}}" (click)="addActiveClass(menu.fid)"><i class={{menu.icon}}></i>{{menu.name}}</a></li>
-				</ul>
-			</li>
+			<li class="header">FUNCTION MENUS</li>
+			<li *ngFor="let treemenu of treeMenus" class="treeview" [ngClass]="{'active':showMenu === treemenu.pageid}">
+			
+					<a *ngIf="treemenu.haschilds" (click)="addExpandClass(treemenu.pageid)">
+						<i class={{treemenu.icon}}></i> 
+						<span>{{treemenu.name}}</span> 
+						<span *ngIf="treemenu.haschilds" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
+					</a>
+					
+					<a *ngIf="!treemenu.haschilds" routerLink="{{treemenu.link}}" (click)="addExpandClass(treemenu.pageid)">
+						<i class={{treemenu.icon}}></i> 
+						<span>{{treemenu.name}}</span> 
+						<span *ngIf="treemenu.haschilds" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
+					</a>
 
+					<ul class="treeview-menu">
+						<li *ngFor="let menu of treemenu.childs" [ngClass]="{'active':check === menu.pageid}">
+							<a routerLink="{{menu.link}}" (click)="addActiveClass(menu.pageid)"><i class={{menu.icon}}></i>{{menu.name}}</a>
+						</li>
+					</ul>
+				</li>
 		</ul>
 	</section>
 </aside> 

@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MenuService } from 'src/app/service/menu/menu.service';
 
 @Component( {
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css'],
-    providers: [ ]
+    providers: [ MenuService]
 } )
 export class SidebarComponent implements OnInit {
 
@@ -12,15 +13,12 @@ export class SidebarComponent implements OnInit {
     showMenu = '';
     check: string;
 
-
     showSubMenu = '';
     username = '';
 
     treeMenus;
 
-
-
-    constructor( @Inject( 'auth' ) private service) { }
+    constructor( @Inject( 'auth' ) private service,private menuSerive: MenuService) { }
 
     ngOnInit() {
 
@@ -29,6 +27,8 @@ export class SidebarComponent implements OnInit {
             this.username = this.service.userAuth.user.username;
         }
 
+        this.treeMenus = this.menuSerive.getTreeMenus();
+        console.log(this.treeMenus);
     }
 
     addExpandClass( element: any ) {
