@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
 
     isActive = true;
     showMenu = '';
-    check: string;
+    check: string ='';
 
     showSubMenu = '';
     username = '';

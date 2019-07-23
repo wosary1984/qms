@@ -8,40 +8,43 @@ export class MenuService {
   getTreeMenus() {
     const menus = [
       {
-        pageid: 11, 
-        link: "/starter", 
-        icon: "fa fa-circle-o text-red", 
-        name: 'Home', 
-        haschilds:false
+          "pageid": 5,
+          "pagename": "Home",
+          "hasDeleted": false,
+          "hasChild": false,
+          "sequenceNumber": null,
+          "path": "/starter",
+          "icon": "fa fa-circle-o text-red",
+          "privilege": null,
+          "parentPageName": null,
+          "childs": []
       },
       {
-        pageid: 12, 
-        link: "", 
-        icon: "fa fa-dashboard", 
-        name: 'Function#2', 
-        haschilds: true, 
-        childs: [
-          {
-            pageid: 121, 
-            link: '#', 
-            name: '获取远程数据列表',
-            icon: "fa fa-circle-o text-red"
-          }, 
-          {
-            pageid: 122, 
-            link: '#', 
-            name: '基础数据类别',
-            icon: "fa fa-circle-o text-red"
-          }, 
-          {
-            mid: 123, 
-            link: '#', 
-            name: '类别详细页面',
-            icon: "fa fa-circle-o text-red"
-          }
-        ]
+          "pageid": 6,
+          "pagename": "Admin",
+          "hasDeleted": false,
+          "hasChild": true,
+          "sequenceNumber": null,
+          "path": null,
+          "icon": "fa fa-dashboard",
+          "privilege": null,
+          "parentPageName": null,
+          "childs": [
+              {
+                  "pageid": 7,
+                  "pagename": "Person",
+                  "hasDeleted": false,
+                  "hasChild": false,
+                  "sequenceNumber": null,
+                  "path": "/person",
+                  "icon": "fa fa-circle-o text-red",
+                  "privilege": "PERSON_READ_PRIVILEGE",
+                  "parentPageName": "Admin",
+                  "childs": []
+              }
+          ]
       }
-    ];
+  ];
 
     return menus;
   }

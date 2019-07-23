@@ -20,26 +20,26 @@
 	      </div>
 	    </form>
 	
-	    <!-- Toolbar Menu Navigation -->
+		<!-- Toolbar Menu Navigation -->
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">FUNCTION MENUS</li>
-			<li *ngFor="let treemenu of treeMenus" class="treeview" [ngClass]="{'active':showMenu === treemenu.pageid}">
+			<li *ngFor="let treemenu of treeMenus" class="treeview">
 			
-					<a *ngIf="treemenu.haschilds" (click)="addExpandClass(treemenu.pageid)">
+					<a *ngIf="treemenu.hasChild" (click)="addExpandClass(treemenu.pagename)">
 						<i class={{treemenu.icon}}></i> 
-						<span>{{treemenu.name}}</span> 
-						<span *ngIf="treemenu.haschilds" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
+						<span>{{treemenu.pagename}}</span> 
+						<span *ngIf="treemenu.hasChild" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
 					</a>
 					
-					<a *ngIf="!treemenu.haschilds" routerLink="{{treemenu.link}}" (click)="addExpandClass(treemenu.pageid)">
+					<a *ngIf="!treemenu.hasChild" routerLink="{{treemenu.path}}" (click)="addExpandClass(treemenu.pagename)">
 						<i class={{treemenu.icon}}></i> 
-						<span>{{treemenu.name}}</span> 
-						<span *ngIf="treemenu.haschilds" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
+						<span>{{treemenu.pagename}}</span> 
+						<span *ngIf="treemenu.hasChild" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
 					</a>
 
 					<ul class="treeview-menu">
-						<li *ngFor="let menu of treemenu.childs" [ngClass]="{'active':check === menu.pageid}">
-							<a routerLink="{{menu.link}}" (click)="addActiveClass(menu.pageid)"><i class={{menu.icon}}></i>{{menu.name}}</a>
+						<li *ngFor="let menu of treemenu.childs" [ngClass]="{'active':check === menu.pagename}">
+							<a routerLink="{{menu.path}}" (click)="addActiveClass(menu.pagename)"><i class={{menu.icon}}></i>{{menu.pagename}}</a>
 						</li>
 					</ul>
 				</li>
