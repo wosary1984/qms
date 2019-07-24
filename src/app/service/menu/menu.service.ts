@@ -1,11 +1,22 @@
 import {Injectable} from '@angular/core';
+import { BaseService } from '../base.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class MenuService {
+export class MenuService extends BaseService{
 
-  constructor() {}
+  constructor(http: HttpClient) {
+    super(http);
+    this.servicename = 'MenuService - 菜单服务';
+  }
 
-  getTreeMenus() {
+  getTreeMenus():Promise<any>{
+    let path = '/api/portal';
+    const url = this.serviceUrl( path );
+    return this.getCommand(url,'getTreeMenus');
+  }
+
+  getTestTreeMenus() {
     const menus = [
       {
           "pageid": 5,

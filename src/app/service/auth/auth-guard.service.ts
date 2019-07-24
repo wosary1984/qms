@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise < boolean > {
         return this.service.checkSession()
             .then(auth => {
                 if (auth && !auth.hasError && auth.isLogged) {
@@ -14,15 +14,7 @@ export class AuthGuardService implements CanActivate {
                     if (url == '/login' || url == '/') {
                         result = true;
                     }
-                    for (let ref of auth.user.userPermissions) {
-
-                        for (let r of ref.split(';')) {
-                            if (r == url) {
-                                result = true;
-                                break;
-                            }
-                        }
-                    }
+                    result = true;
                     if (!result) {
                         this.service.navigateToError(this.router, 'The path is not avaiable', url)
                     }
@@ -40,5 +32,5 @@ export class AuthGuardService implements CanActivate {
     }
 
 
-    constructor(@Inject('auth') private service:AuthService, private router: Router) { }
+    constructor(@Inject('auth') private service: AuthService, private router: Router) {}
 }

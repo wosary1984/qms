@@ -1,26 +1,27 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {Router} from '@angular/router';
-declare var $:any;
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+declare var $: any;
+
 @Component({
-  selector: 'app-layout',
-  templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.scss']
+    selector: 'app-layout',
+    templateUrl: './pages.component.html',
+    styleUrls: ['./pages.component.scss']
 })
-export class PageComponent implements OnInit, AfterViewInit {
+export class PageComponent implements OnInit {
 
-  ngAfterViewInit(): void {
-  }
+    ngAfterViewInit(): void { }
 
-  constructor(public router: Router) {}
+    constructor(public router: Router) { }
 
-  ngOnInit() {
-    if (this.router.url === '/') {
-      //this.router.navigate(['/starter']);
+    ngOnInit() {
+        if (this.router.url === '/') {
+            //this.router.navigate(['/starter']);
+        }
+
+        $(document).ready(() => {
+            $('body').layout('fix');
+        });
     }
-
-    $(document).ready(() => {
-      $('body').layout('fix');
-    });
-  }
 
 }
