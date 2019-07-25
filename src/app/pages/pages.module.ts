@@ -16,6 +16,10 @@ const routes: Routes = [{
         path: 'home',
         canActivate: [AuthGuardService],
         component: HomeComponent
+    },{
+        path: 'admin',
+        canActivate: [AuthGuardService],
+        loadChildren: './admin/admin.module#AdminModule'
     }]
 }];
 @NgModule({

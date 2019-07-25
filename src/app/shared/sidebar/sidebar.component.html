@@ -15,8 +15,9 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-	              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> </button>
-			</span>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                            class="fa fa-search"></i> </button>
+                </span>
             </div>
         </form>
 
@@ -25,21 +26,18 @@
             <li class="header">FUNCTION MENUS</li>
             <li *ngFor="let treemenu of treeMenus" class="treeview">
 
-                <a *ngIf="treemenu.hasChild">
+                <a routerLink="{{treemenu.path}}" (click)="addActiveClass(treemenu.pagename)">
                     <i class={{treemenu.icon}}></i>
                     <span>{{treemenu.pagename}}</span>
-                    <span *ngIf="treemenu.hasChild" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-
-                <a *ngIf="!treemenu.hasChild" routerLink="{{treemenu.path}}">
-                    <i class={{treemenu.icon}}></i>
-                    <span>{{treemenu.pagename}}</span>
-                    <span *ngIf="treemenu.hasChild" class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
+                    <span *ngIf="treemenu.hasChild" class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
 
                 <ul class="treeview-menu">
                     <li *ngFor="let menu of treemenu.childs" [ngClass]="{'active':check === menu.pagename}">
-                        <a routerLink="{{menu.path}}" (click)="addActiveClass(menu.pagename)"><i class={{menu.icon}}></i>{{menu.pagename}}</a>
+                        <a routerLink="{{menu.path}}" (click)="addActiveClass(menu.pagename)"><i
+                                class={{menu.icon}}></i>{{menu.pagename}}</a>
                     </li>
                 </ul>
             </li>

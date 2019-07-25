@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 declare var $: any;
 
 @Component({
@@ -10,9 +9,7 @@ declare var $: any;
 })
 export class PageComponent implements OnInit {
 
-    ngAfterViewInit(): void { }
-
-    constructor(public router: Router) { }
+    constructor(private router: Router) { }
 
     ngOnInit() {
         if (this.router.url === '/') {

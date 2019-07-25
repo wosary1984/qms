@@ -60,6 +60,34 @@ export class ControlSidebarComponent implements OnInit {
             }
         })
 
+         // Add the change skin listener
+         $('[data-skin]').on('click', function (e: { preventDefault: () => void; }) {
+            if ($(this).hasClass('knob'))
+                return
+            e.preventDefault()
+            let mySkins = [
+                'skin-blue',
+                'skin-black',
+                'skin-red',
+                'skin-yellow',
+                'skin-purple',
+                'skin-green',
+                'skin-blue-light',
+                'skin-black-light',
+                'skin-red-light',
+                'skin-yellow-light',
+                'skin-purple-light',
+                'skin-green-light'
+            ]
+            $.each(mySkins, function (i: string | number) {
+                $('body').removeClass(mySkins[i])
+            })
+    
+            $('body').addClass($(this).data('skin'))
+            return false
+        })
+
+
     }
 
     /** Toggles layout classes

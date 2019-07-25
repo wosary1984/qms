@@ -1,0 +1,9 @@
+<section class="content-header">
+  <h1> {{sTitle}} <small>{{sSmallTitle}}</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li *ngFor="let path of sPath">
+      <a><i class="fa fa-pagelines"></i> {{path}} </a>
+    </li>
+  </ol>
+</section>
