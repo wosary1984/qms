@@ -134,7 +134,7 @@ export class BaseService {
         // return deferred.promise();
     }
 
-    public generateUUID(prifix):any {
+    public generateUUID(prifix: number):any {
         var date = new Date();
         var uuid = prifix + date.getDay() + date.getHours() + date.getMinutes() + date.getSeconds() + date.getMilliseconds() + Math.round( Math.random() * 10000 );
         return uuid;

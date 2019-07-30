@@ -1,2 +1,45 @@
 <!-- Content Header (Page header) -->
 <app-content-header [sTitle]="sTitle" [sSmallTitle]="sSmallTitle" [sPath]="sPath"></app-content-header>
+<!-- Table Content -->
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Data Table </h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table id="t_person" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Person ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Identity NO</th>
+            <th>Has User</th>
+          </tr>
+        </thead>
+        <tbody>
+         <!--  <tr *ngFor="let person of persons">
+            <td>{{person.personid}}</td>
+            <td>{{person.lastname}} {{person.firstname}}</td>
+            <td>{{person.gender}}</td>
+            <td>{{person.identityno}}</td>
+            <td>{{hasUser(person.username)}}</td>
+          </tr> -->
+
+        </tbody>
+        <tfoot>
+          <!-- <tr>
+            <th>Rendering engine</th>
+            <th>Browser</th>
+            <th>Platform(s)</th>
+            <th>Engine version</th>
+            <th>CSS grade</th>
+          </tr> -->
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</section>

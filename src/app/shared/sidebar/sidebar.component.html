@@ -24,8 +24,19 @@
         <!-- Toolbar Menu Navigation -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">FUNCTION MENUS</li>
+            <!-- <li class="treeview">
+                <a routerLink="12312">
+                    <span>123123</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li> <a><i></i>123123123123</a> </li>
+                </ul>
+            </li> -->
+            
             <li *ngFor="let treemenu of treeMenus" class="treeview">
-
                 <a routerLink="{{treemenu.path}}" (click)="addActiveClass(treemenu.pagename)">
                     <i class={{treemenu.icon}}></i>
                     <span>{{treemenu.pagename}}</span>
@@ -33,7 +44,6 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-
                 <ul class="treeview-menu">
                     <li *ngFor="let menu of treemenu.childs" [ngClass]="{'active':check === menu.pagename}">
                         <a routerLink="{{menu.path}}" (click)="addActiveClass(menu.pagename)"><i
@@ -41,6 +51,7 @@
                     </li>
                 </ul>
             </li>
+            
         </ul>
     </section>
 </aside>
