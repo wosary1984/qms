@@ -3,15 +3,21 @@ import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class MenuService extends BaseService{
+export class PageService extends BaseService{
 
   constructor(http: HttpClient) {
     super(http);
-    this.servicename = 'MenuService - 菜单服务';
+    this.servicename = 'PageService - 页面服务';
   }
 
   getTreeMenus():Promise<any>{
     let path = '/api/portal';
+    const url = this.serviceUrl( path );
+    return this.getCommand(url,'getTreeMenus');
+  }
+
+  getPage(page:string):Promise<any>{
+    let path = '/api/portal/'+page;
     const url = this.serviceUrl( path );
     return this.getCommand(url,'getTreeMenus');
   }

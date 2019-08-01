@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MenuService } from 'src/app/service/menu/menu.service';
+import { PageService } from 'src/app/service/menu/page.service';
 
 declare var $: any;
 
@@ -7,12 +7,12 @@ declare var $: any;
     selector: 'app-control-sidebar',
     templateUrl: './controlsidebar.component.html',
     styleUrls: ['./controlsidebar.component.css'],
-    providers: [MenuService]
+    providers: [PageService]
 })
 export class ControlSidebarComponent implements OnInit {
 
 
-    constructor(@Inject('auth') private service, private menuSerive: MenuService) { }
+    constructor(@Inject('auth') private service, private menuSerive: PageService) { }
 
     ngOnInit() {
         //this._createNewTab();

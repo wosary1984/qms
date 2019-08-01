@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 
 const routes: Routes = [{
     path: '',
-    component: AdminComponent,
+    //component: AdminComponent,
     children: [{
         path: 'person',
         canActivate: [AuthGuardService],

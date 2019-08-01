@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject ,AfterViewInit } from '@angular/core';
-import { MenuService } from 'src/app/service/menu/menu.service';
+import { PageService } from 'src/app/service/menu/page.service';
+declare var $: any;
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css'],
-    providers: [MenuService]
+    providers: [PageService]
 })
 export class SidebarComponent implements OnInit ,AfterViewInit{
 
@@ -16,14 +17,9 @@ export class SidebarComponent implements OnInit ,AfterViewInit{
 
     ngAfterViewInit(): void {
         //this.treeMenus = this.menuSerive.getTestTreeMenus();
-        this.menuSerive.getTreeMenus().then(back => {
-            if (back.code == 200) {
-                this.treeMenus = back.data;
-            }
-        })
     }
 
-    constructor(@Inject('auth') private service, private menuSerive: MenuService) {}
+    constructor(@Inject('auth') private service, private menuSerive: PageService) {}
 
     ngOnInit() {
 
@@ -31,6 +27,15 @@ export class SidebarComponent implements OnInit ,AfterViewInit{
         if (this.service.userAuth && this.service.userAuth.isLogged && this.service.userAuth.user) {
             this.username = this.service.userAuth.user.username;
         }
+
+        const that = this;
+        this.menuSerive.getTreeMenus().then(back => {
+            if (back.code == 200) {
+                that.treeMenus = back.data;
+            }
+        })
+
+        $('.sidebar-menu').tree()
     }
 
     addActiveClass(element: any) {
