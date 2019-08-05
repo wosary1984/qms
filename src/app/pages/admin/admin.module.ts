@@ -5,6 +5,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthGuardService } from 'src/app/service/auth/auth-guard.service';
 import { PersonComponent } from './person/person.component';
 import { CommonModule } from '@angular/common';
+import { PersonEditComponent } from './person/person-edit/person-edit.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [{
     path: '',
@@ -20,12 +22,14 @@ const routes: Routes = [{
     imports: [
         RouterModule.forChild( routes ),
         SharedModule,
-        CommonModule
+        CommonModule,
+        FormsModule
     ],
     providers: [],
     declarations: [
         AdminComponent,
-        PersonComponent]
+        PersonComponent,
+        PersonEditComponent]
 } )
 export class AdminModule {
 

@@ -1,9 +1,10 @@
 <!-- Content Header (Page header) -->
-<app-content-header [sTitle]="sTitle" [sSmallTitle]="sSmallTitle" [sPath]="sPath"></app-content-header>
+<app-content-header [sTitle]="title" [sSmallTitle]="smallTitle" [sPath]="sPath"></app-content-header>
 <!-- Table Content -->
 <section class="content">
   <div class="box box-primary">
     <app-toolbar [actions]="actions" (onAction)="onToorBarAction($event)"></app-toolbar>
+    <app-person-edit [visible]="visible" [person]="person" (btnClick)="onBtnClick($event)"></app-person-edit>
     <div class="box-body">
       <table id="t_person" class="table table-bordered table-striped">
         <thead>

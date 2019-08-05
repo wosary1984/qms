@@ -7,6 +7,15 @@ export class User {
   userPermissions?: string[] = [];
 }
 
+export class Person {
+  id?: number;
+  firstname: string;
+  lastname: string;
+  identityno?: string;
+  gender:string;
+  birthdate:any;
+}
+
 // 登录信息实体类
 export class Auth {
   user: User;

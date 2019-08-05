@@ -23,8 +23,8 @@ export class ToolbarComponent implements OnInit {
         } );
 }
 
-onSubmit( value: any ) {
+  onSubmit( value: any ) {
     this.onAction.emit( value );
-}
+  }
 
 }

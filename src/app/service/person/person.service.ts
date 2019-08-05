@@ -13,6 +13,12 @@ export class PersonService extends BaseService{
   getPersons():Promise<any>{
     let path = '/api/persons';
     const url = this.serviceUrl( path );
-    return this.getCommand(url,'getPersons');
+    return this.getCommand(url,'Query Person List');
+  }
+
+  createPerson(data):Promise<any>{
+    let path = '/api/person';
+    const url = this.serviceUrl( path );
+    return this.postCommand( url, data, 'Create Person' );
   }
 }

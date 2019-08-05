@@ -22,6 +22,7 @@
     "@types/jquery": "^3.3.29",
     "admin-lte": "^2.4.12",
     "bootstrap": "^3.4.1",
+    "bootstrap-datepicker": "^1.9.0",
     "datatables.net-dt": "^1.10.19",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",

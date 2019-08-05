@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PersonService } from 'src/app/service/person/person.service';
 import { PageService } from 'src/app/service/menu/page.service';
+import { Person } from 'src/app/model/entity';
 declare var $: any;
 
 @Component({
@@ -12,24 +13,16 @@ declare var $: any;
 })
 export class PersonComponent implements OnInit , AfterViewInit{
 
-  private sTitle: string = 'Person';
-  private sSmallTitle: string =' ';
+  private title: string = 'Person';
   private sPath = new Array('admin','person');
+  private mode :string = 'view';
+  private visible:string = 'none';
 
   //dtOptions: DataTables.Settings = {};
 
   private persons=[];
-
-  private actions = [
-    {
-        name: 'refresh',
-        icon: 'fa fa-refresh'
-    },
-    {
-        name: 'create',
-        icon: 'fa fa-plus'
-    }
-]
+  private person =new Person();
+  private actions = []
 
   ngAfterViewInit(): void {
     /* this.personSerive.getPersons().then(data =>{
@@ -43,8 +36,19 @@ export class PersonComponent implements OnInit , AfterViewInit{
   constructor(private router: ActivatedRoute, private personSerive: PersonService, private pageService:PageService) { }
 
   ngOnInit() {
-    this._initPage(this.sTitle);
+    this._setMode('view');
+    this._initPage(this.title);
     this._initDataTable();
+    
+  }
+
+  onBtnClick(value:any){
+    this._setMode('view');
+    if(value ==='success'){
+      //this._setMode('view');
+      this.refresh();
+    }
+   
   }
 
   onToorBarAction( value: any ) {
@@ -52,18 +56,28 @@ export class PersonComponent implements OnInit , AfterViewInit{
     if ( value.action === 'refresh' ) {
         this.refresh();
     } else if ( value.action === 'create' ) {
-        //this.addPerson();
-    } else if ( value.action === 'search' ) {
+        this.create();
+    } else if ( value.action === 'cancel' ) {
 
     }
-    console.log( value );
+  }
+
+  create(){
+    this._setMode('create');
+    this.person =new Person();
   }
 
   refresh(){
+    this._setMode('view');
     let table = $('#t_person').DataTable();
     table.ajax.reload();
+
   }
 
+  _setMode(mode:string){
+    this.mode = mode;
+    this.visible = this.mode === 'view'? 'none':'';
+  }
   _initPage(pagename:string ){
     const that = this;
     var compare = function (obj1, obj2) {
@@ -94,7 +108,7 @@ export class PersonComponent implements OnInit , AfterViewInit{
       processing: true,
       searching: false, // 自带的搜索
       ajax: (dataTablesParameters: any, callback) => {
-        console.log(dataTablesParameters);
+        //console.log(dataTablesParameters);
         that.personSerive.getPersons().then(data =>{
           if(data.code === 200){
             that.persons  =  data.data;
@@ -110,7 +124,7 @@ export class PersonComponent implements OnInit , AfterViewInit{
       columns: [
         { data: 'personid' }, 
         { data: function(row, type, val, meta) {
-          return row.lastname +row.firstname ;
+          return row.lastname +' '+ row.firstname ;
         }},
         { data: 'gender', defaultContent:'N/A' },
         { data: 'identityno' },
