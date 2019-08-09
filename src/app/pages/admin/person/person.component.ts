@@ -104,6 +104,7 @@ export class PersonComponent implements OnInit , AfterViewInit{
   _initDataTable(){
     const that = this;
     let table = $('#t_person').DataTable({
+      autoWidth: false,
       serverSide: true,
       processing: true,
       searching: false, // 自带的搜索
@@ -128,22 +129,35 @@ export class PersonComponent implements OnInit , AfterViewInit{
         }},
         { data: 'gender', defaultContent:'N/A' },
         { data: 'identityno' },
+        { data: 'username' },
         { data: function(row, type, val, meta){
           return that._hasUser(row.username);
         } }
       ],
       columnDefs: [
         { 
-          targets: [1,2,3,4],
+          targets: [1,2,3,4,5],
           orderable:false
+        },
+        { 
+          targets: 5,
+          render: function ( data, type, full, meta ) {
+            if(data ==='No'){
+              return '<a href="javascript:void(0)" onclick="'+that._createUser()+'">Create User</a>';
+            }
+          }
         } 
       ]
   })
 }
 
+  _createUser(){
+
+  }
   _hasUser(value: any){
     if(!value)
-    return false;
+    return 'No';
+    else return 'Yes';
   }
 
 

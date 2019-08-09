@@ -20,6 +20,11 @@ const routes: Routes = [{
         path: 'admin',
         canActivate: [AuthGuardService],
         loadChildren: './admin/admin.module#AdminModule'
+    },
+    {
+        path: 'wafer',
+        canActivate: [AuthGuardService],
+        loadChildren: './wafer/wafer.module#WaferModule'
     }]
 }];
 @NgModule({
