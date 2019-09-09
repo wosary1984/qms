@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
-import { SharedModule } from 'src/app/shared/shared.module';
-import { AuthGuardService } from 'src/app/service/auth/auth-guard.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { WaferComponent } from 'src/app/shared/wafer/wafer.component';
+
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AuthGuardService } from 'src/app/service/auth/auth-guard.service';
+import { OverviewComponent } from './wafer/overview.component';
 
 const routes: Routes = [{
     path: '',
-    component: WaferComponent,
+    component: OverviewComponent,
     children: [{
-        path: 'person',
+        path: 'wafer',
         canActivate: [AuthGuardService],
-        component: WaferComponent
+        component: OverviewComponent
     }]
 }];
 
@@ -22,11 +23,13 @@ const routes: Routes = [{
         SharedModule,
         CommonModule,
         FormsModule
+        
     ],
     providers: [],
     declarations: [
+        OverviewComponent
         ]
 } )
-export class WaferModule {
+export class SemiModule {
 
 }

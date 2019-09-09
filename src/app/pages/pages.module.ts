@@ -22,9 +22,9 @@ const routes: Routes = [{
         loadChildren: './admin/admin.module#AdminModule'
     },
     {
-        path: 'wafer',
+        path: 'semi',
         canActivate: [AuthGuardService],
-        loadChildren: './wafer/wafer.module#WaferModule'
+        loadChildren: './semi/semi.module#SemiModule'
     }]
 }];
 @NgModule({

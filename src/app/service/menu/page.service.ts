@@ -11,13 +11,13 @@ export class PageService extends BaseService{
   }
 
   getTreeMenus():Promise<any>{
-    let path = '/api/portal';
+    let path = 'api/portal';
     const url = this.serviceUrl( path );
     return this.getCommand(url,'getTreeMenus');
   }
 
   getPage(page:string):Promise<any>{
-    let path = '/api/portal/'+page;
+    let path = 'api/portal/'+page;
     const url = this.serviceUrl( path );
     return this.getCommand(url,'getTreeMenus');
   }
