@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { PageService } from './page.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('MenuService', () => {
+describe('PageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PageService]
+      providers: [PageService],
+      imports:[  HttpClientTestingModule ]
     });
   });
 

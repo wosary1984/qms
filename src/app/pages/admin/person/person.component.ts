@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { PersonService } from 'src/app/service/person/person.service';
 import { PageService } from 'src/app/service/menu/page.service';
 import { Person } from 'src/app/model/entity';
@@ -33,7 +32,7 @@ export class PersonComponent implements OnInit , AfterViewInit{
     
   }
 
-  constructor(private router: ActivatedRoute, private personSerive: PersonService, private pageService:PageService) { }
+  constructor( private personSerive: PersonService, private pageService:PageService) { }
 
   ngOnInit() {
     this._setMode('view');

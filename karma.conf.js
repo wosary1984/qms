@@ -20,6 +20,12 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
+    files: [
+      { pattern: 'node_modules/jquery/dist/jquery.min.js', watched: false },
+      { pattern: 'node_modules/datatables.net/js/jquery.dataTables.min.js', watched: false },
+      { pattern: 'node_modules/datatables.net-bs/js/dataTables.bootstrap.min.js', watched: false },
+      { pattern: './src/test.ts', watched: false }
+    ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

@@ -93,6 +93,9 @@ export class WaferComponent implements OnInit, AfterViewInit {
 
   }
 
+  pythagorean(r, h){
+    return Math.sqrt(Math.pow(r, 2) - Math.pow(h, 2));
+  }
   _init() {
     let div = $('.wafer-svg')[0];
     let width = 500, height = 500;
@@ -115,9 +118,6 @@ export class WaferComponent implements OnInit, AfterViewInit {
       let scale = 5;
       let rs = Math.round(r / scale);
 
-      function le(r, h) {
-        return Math.sqrt(Math.pow(r, 2) - Math.pow(h, 2));
-      }
       svg.append('circle')
         .attr('cx', cx)
         .attr('cy', cy)
@@ -126,7 +126,7 @@ export class WaferComponent implements OnInit, AfterViewInit {
 
       var data = [];
       for (let y = 0; y < rs; y++) {
-        let yy = rs - Math.round(le(r, y * scale) / 5);
+        let yy = rs - Math.round(this.pythagorean(r, y * scale) / 5);
         let dataU = d3.range(rs * 2 - yy * 2).map(function (i) {
 
           let value = {
