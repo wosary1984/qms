@@ -18,7 +18,16 @@ export class WaferComponent implements OnInit, AfterViewInit {
 
   @Input() title: string = 'Wafer Map';
 
-  @Input() waferid: string;
+  private _waferid: string;
+  @Input() set waferid(value: string) {
+    this._waferid = value;
+    this.drawWafer(this._waferid);
+  }
+  get waferid(): string {
+    return this._waferid;
+  }
+
+  private current_div: any;
 
   constructor(private waferdataService: WaferdataService) { }
 
@@ -27,11 +36,11 @@ export class WaferComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.drawWafer(this.waferid);
-    //console.log(this.waferid);
-    //this._init();
   }
 
   drawWafer(waferid: string) {
+
+    if (waferid === undefined) return;
     let that = this;
     that.waferdataService.getWaferData(waferid).then(data => {
       if (data.code === 200 && data.data != null) {
@@ -50,36 +59,36 @@ export class WaferComponent implements OnInit, AfterViewInit {
     if (div) {
 
       let width = div.offsetWidth;
-      let height = div.offsetHeight;
-      let svg = d3.select(".wafer-svg")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("style", "background:rgb(255, 255, 255)")
-        .call(d3.zoom().on("zoom", function () {
-          svg.attr("transform", d3.event.transform)
+      let height = div.offsetHeight > 500 ? div.offsetHeight: 500;
+      d3.select('svg').remove();
+      let svg = d3.select('.wafer-svg').append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('style', 'background:grey')
+        .call(d3.zoom().on('zoom', function () {
+          svg.attr('transform', d3.event.transform)
         }))
-        .append("g");
+        .append('g');
 
       let centerx = width / 2;
       let centery = height / 2;
 
-      svg.append("circle")
-        .attr("cx", centerx)
-        .attr("cy", centery)
-        .attr("r", winonwRadius)
-        .style("fill", "grey");
+      svg.append('circle')
+        .attr('cx', centerx)
+        .attr('cy', centery)
+        .attr('r', winonwRadius)
+        .style('fill', 'grey');
 
       svg.selectAll('rect')
         .data(raw)
         .enter().append('rect')
-        .attr("x", function (d) { return centerx + d.cx * scale + d.delta * scale; })
-        .attr("y", function (d) { return centery - d.cy * scale - scale / 2; })
-        .attr("width", scale)
-        .attr("height", scale)
-        .style("fill", function (d) { return d.defect === true ? 'red' : 'green'; })
-        .style("stroke-width", "1")
-        .style("stroke", "rgb(0,0,0)");
+        .attr('x', function (d) { return centerx + d.cx * scale + d.delta * scale; })
+        .attr('y', function (d) { return centery - d.cy * scale - scale / 2; })
+        .attr('width', scale)
+        .attr('height', scale)
+        .style('fill', function (d) { return d.defect === true ? 'red' : 'green'; })
+        .style('stroke-width', '1')
+        .style('stroke', 'rgb(0,0,0)');
     }
 
   }
@@ -90,15 +99,15 @@ export class WaferComponent implements OnInit, AfterViewInit {
     if (div) {
       width = div.offsetWidth;
       height = div.offsetHeight;
-      var svg = d3.select(".wafer-svg")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("style", "background:rgb(255, 255, 255)")
-        .call(d3.zoom().on("zoom", function () {
-          svg.attr("transform", d3.event.transform)
+      var svg = d3.select('.wafer-svg')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('style', 'background:rgb(255, 255, 255)')
+        .call(d3.zoom().on('zoom', function () {
+          svg.attr('transform', d3.event.transform)
         }))
-        .append("g")
+        .append('g')
 
       let cx = width / 2;
       let cy = height / 2;
@@ -109,11 +118,11 @@ export class WaferComponent implements OnInit, AfterViewInit {
       function le(r, h) {
         return Math.sqrt(Math.pow(r, 2) - Math.pow(h, 2));
       }
-      svg.append("circle")
-        .attr("cx", cx)
-        .attr("cy", cy)
-        .attr("r", r)
-        .style("fill", "grey");
+      svg.append('circle')
+        .attr('cx', cx)
+        .attr('cy', cy)
+        .attr('r', r)
+        .style('fill', 'grey');
 
       var data = [];
       for (let y = 0; y < rs; y++) {
@@ -148,14 +157,14 @@ export class WaferComponent implements OnInit, AfterViewInit {
       svg.selectAll('rect')
         .data(data)
         .enter().append('rect')
-        .attr("x", function (d) { return d.px })
-        .attr("y", function (d) { return d.py })
-        .attr("width", scale)
-        .attr("height", scale)
-        .style("fill", function (d) { return d.color })
-        .style("stroke-width", "1")
-        .style("stroke", "rgb(0,0,0)");
-      //.attr("style", "fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)");
+        .attr('x', function (d) { return d.px })
+        .attr('y', function (d) { return d.py })
+        .attr('width', scale)
+        .attr('height', scale)
+        .style('fill', function (d) { return d.color })
+        .style('stroke-width', '1')
+        .style('stroke', 'rgb(0,0,0)');
+      //.attr('style', 'fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)');
     }
   }
 }

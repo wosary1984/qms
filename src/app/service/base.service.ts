@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-import SysConfig from '../model/config';
+import RemoteServiceConfig from '../model/config';
 
 export class BaseService {
 
@@ -16,7 +16,8 @@ export class BaseService {
     }
 
     protected serviceUrl( requestUrl: string ): string {
-        const url = SysConfig.host + '/' + SysConfig.appname + '/' + requestUrl;
+        //const url = RemoteServiceConfig.contextpath.trim() ===''? RemoteServiceConfig.concat()
+        const url = RemoteServiceConfig.host + RemoteServiceConfig.contextpath + requestUrl;
         return url;
     }
 

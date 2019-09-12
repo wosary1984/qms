@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseService } from '../base.service';
 import { Auth, User, BackMessage } from 'src/app/model/entity';
-import HostConfig from 'src/app/model/config';
+import RemoteServiceConfig from 'src/app/model/config';
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -28,7 +28,8 @@ export class AuthService extends BaseService {
     }
 
     private login( username: string, password: string ): Promise<BackMessage> {
-        const url = `${HostConfig.host}/${HostConfig.appname}/api/session/login`;
+        const path = '/api/session/login';
+        const url = `${RemoteServiceConfig.host}${RemoteServiceConfig.contextpath}${path}`;
         let user = {
             "username": username,
             "password": password
@@ -54,7 +55,8 @@ export class AuthService extends BaseService {
     }
 
     public async logout(): Promise<BackMessage> {
-        const url = `${HostConfig.host}/${HostConfig.appname}/api/session/logout`;
+        const path = '/api/session/logout';
+        const url = `${RemoteServiceConfig.host}${RemoteServiceConfig.contextpath}${path}`;
         const headers = new HttpHeaders().set("Content-Type", "application/json;charset=UTF-8");
         try {
             const res = await this.http.get(url, { observe: 'response', withCredentials: true })
@@ -78,7 +80,8 @@ export class AuthService extends BaseService {
     }
 
     public checkSession(): Promise<Auth> {
-        const url = `${HostConfig.host}/${HostConfig.appname}/my/session`;
+        const path = '/my/session';
+        const url = `${RemoteServiceConfig.host}${RemoteServiceConfig.contextpath}${path}`;
         //const headers = new HttpHeaders().set("Content-Type", "application/json;charset=UTF-8");
 
         return this.http.get(url, { observe: 'response', withCredentials: true })

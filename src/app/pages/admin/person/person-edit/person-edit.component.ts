@@ -19,13 +19,14 @@ export class PersonEditComponent implements OnInit {
 
   ngOnInit() {
     this._initDatePicker();
+    this._initSelect2();
   }
 
   onClick(value: any) {
     if (value === 'save') {
       this.createPerson();
     }
-    else{
+    else {
       this.btnClick.emit('cancel');
     }
   }
@@ -44,6 +45,11 @@ export class PersonEditComponent implements OnInit {
       else {
         that.btnClick.emit('failed');
       }
+    });
+  }
+  _initSelect2() {
+    $('.select2').select2({
+      width: 'resolve' // need to override the changed default
     });
   }
   _initDatePicker() {

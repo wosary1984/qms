@@ -11,8 +11,14 @@ export class WaferdataService  extends BaseService{
   }
 
   getWaferData(waferid):Promise<any>{
-    let path = 'api/wafer/'+waferid;
+    let path = '/api/wafer/'+waferid;
     const url = this.serviceUrl( path );
     return this.getCommand(url,'Get Wafer Data');
+  }
+
+  getWaferCodeList():Promise<any>{
+    let path = '/api/wafer'
+    const url = this.serviceUrl( path );
+    return this.getCommand(url,'Get Wafer Code List');
   }
 }
