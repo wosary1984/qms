@@ -10,7 +10,7 @@ declare var $: any;
 })
 export class PersonEditComponent implements OnInit {
 
-  private title: string = 'New Person';
+   title: string = 'New Person';
   @Input() person = new Person();
   @Input() visible = 'none';
   @Output() btnClick: EventEmitter<any> = new EventEmitter();

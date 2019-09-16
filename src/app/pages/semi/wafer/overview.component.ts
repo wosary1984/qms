@@ -8,10 +8,11 @@ declare var $: any;
   providers: [WaferdataService]
 })
 export class OverviewComponent implements OnInit, AfterViewInit {
-  private title: string = 'Wafer Map';
-  private sPath = new Array('semi', 'wafer map');
+   title: string = 'Wafer Map';
+   smallTitle: string = '';
+   sPath = new Array('semi', 'wafer map');
 
-  private waferid: string;
+   waferid: string;
 
   ngAfterViewInit(): void {
 

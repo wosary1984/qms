@@ -10,14 +10,14 @@ import { Subscription } from "rxjs";
 } )
 export class HeaderComponent implements OnInit {
 
-    private logomin='Q';
-    private logolg = 'QMS';
+     logomin='Q';
+     logolg = 'QMS';
 
-    private username = '';
-    private oReceivedMsg;
-    private aMessages = [];
-    private datasubscription: Subscription;
-    private statesubscription: Subscription;
+     username = '';
+     oReceivedMsg;
+     aMessages = [];
+     datasubscription: Subscription;
+     statesubscription: Subscription;
 
     constructor( @Inject( 'auth' ) private service, private router: Router ) {
 
