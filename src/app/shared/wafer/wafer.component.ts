@@ -27,8 +27,6 @@ export class WaferComponent implements OnInit, AfterViewInit {
     return this._waferid;
   }
 
-  private current_div: any;
-
   constructor(private waferdataService: WaferdataService) { }
 
   ngAfterViewInit(): void {

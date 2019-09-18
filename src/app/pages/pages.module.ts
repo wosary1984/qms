@@ -25,6 +25,11 @@ const routes: Routes = [{
         path: 'semi',
         canActivate: [AuthGuardService],
         loadChildren: './semi/semi.module#SemiModule'
+    },
+    {
+        path: 'factor',
+        canActivate: [AuthGuardService],
+        loadChildren: './event/event.module#EventModule'
     }]
 }];
 @NgModule({

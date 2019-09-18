@@ -1,0 +1,22 @@
+<!-- Content Header (Page header) -->
+<app-content-header [sTitle]="title" [sSmallTitle]="smallTitle" [sPath]="sPath"></app-content-header>
+<!-- Table Content -->
+<section>
+    <div class="box box-primary">
+        <app-toolbar [actions]="actions" (onAction)="onToorBarAction($event)"></app-toolbar>
+        <div class="box-body">
+            <table id="key_factor" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Key Factor</th>
+                        <th>Event</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<router-outlet></router-outlet>

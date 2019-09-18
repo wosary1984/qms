@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <app-content-header [sTitle]="title" [sSmallTitle]="smallTitle" [sPath]="sPath"></app-content-header>
 <!-- Table Content -->
-<section class="content">
+<section>
   <div class="box box-primary">
     <app-toolbar [actions]="actions" (onAction)="onToorBarAction($event)"></app-toolbar>
     <app-person-edit [visible]="visible" [person]="person" (btnClick)="onBtnClick($event)"></app-person-edit>

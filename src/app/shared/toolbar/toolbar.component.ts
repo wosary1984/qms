@@ -9,6 +9,8 @@ export class ToolbarComponent implements OnInit {
 
   @Input() actions = [];
 
+  @Input() title: string = 'test';
+
   @Output() onAction: EventEmitter<any> = new EventEmitter();
   
   constructor() { }

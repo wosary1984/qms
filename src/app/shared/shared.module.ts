@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { ContentHeaderComponent } from './content-header/content-header.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WaferComponent } from './wafer/wafer.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule( {
     imports: [
@@ -13,12 +14,14 @@ import { WaferComponent } from './wafer/wafer.component';
     declarations: [
         ContentHeaderComponent,
         ToolbarComponent,
-        WaferComponent
+        WaferComponent,
+        TimelineComponent
     ],
     exports: [
         ContentHeaderComponent,
         ToolbarComponent,
-        WaferComponent
+        WaferComponent,
+        TimelineComponent
     ],
     providers: []
 } )

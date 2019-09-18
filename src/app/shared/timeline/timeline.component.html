@@ -1,0 +1,22 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="timeline">
+                <li *ngFor="let event of aEvent" [ngClass]="{'time-label':false === event.item}">
+                    <span *ngIf="!event.item" class="bg-green">{{event.group}}</span>
+                    <i *ngIf="event.item" class="fa fa-tint bg-gray"></i>
+                    <div *ngIf="event.item" class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i>{{event.time}}</span>
+                        <h3 class="timeline-header"><a href="#">{{event.title}}</a></h3>
+                        <div class="timeline-body" style="white-space:pre-wrap">
+                            <div>{{event.content}} </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- /.content -->

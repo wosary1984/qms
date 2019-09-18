@@ -1,12 +1,42 @@
 .toolbar{
-     margin-bottom: 0 !important;
+     margin-bottom: 5px !important;
+     min-height: 40px !important;
+     height: 40px;
+     background-color: #f8f8f8;
+     border-color: #e7e7e7;
 }
 
 .toolbar button{
      margin-top:10px;
      margin-right: 10px;
-     min-width: 120px;
+     //min-width: 100px;
 }
 .toolbar button i{
      margin-right:5px;
 }
+.toolbar ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+     //background-color: #333;
+   }
+   
+.toolbar li {
+     float: left;
+     padding-top: 10px;
+     margin-left: 10px;
+   }
+   
+.toolbar li a {
+     display: block;
+     //color: white;
+     text-align: center;
+     //padding: 14px 16px;
+     text-decoration: none;
+   }
+   
+   /* Change the link color to #111 (black) on hover */
+.toolbar li a:hover {
+     background-color: #eee;
+   }
