@@ -7,6 +7,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthGuardService } from 'src/app/service/auth/auth-guard.service';
 import { MainEventComponent } from './main-event/main-event.component';
 import { KeyFactorComponent } from './key-factor/key-factor.component';
+import { ConfirmDialogService } from 'src/app/service/util/confirm-dialog.service';
+import { CuKeyFactorComponent } from './key-factor/cu-key-factor/cu-key-factor.component';
+import { FactorDataService } from 'src/app/service/data/factor-data.service';
 
 const routes: Routes = [{
     path: '',
@@ -26,10 +29,11 @@ const routes: Routes = [{
         CommonModule,
         FormsModule
     ],
-    providers: [],
+    providers: [ ConfirmDialogService,FactorDataService],
     declarations: [
         MainEventComponent,
-        KeyFactorComponent
+        KeyFactorComponent,
+        CuKeyFactorComponent
     ]
 })
 export class EventModule {

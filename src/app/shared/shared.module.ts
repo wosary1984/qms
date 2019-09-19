@@ -5,6 +5,7 @@ import { ContentHeaderComponent } from './content-header/content-header.componen
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WaferComponent } from './wafer/wafer.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule( {
     imports: [
@@ -15,13 +16,15 @@ import { TimelineComponent } from './timeline/timeline.component';
         ContentHeaderComponent,
         ToolbarComponent,
         WaferComponent,
-        TimelineComponent
+        TimelineComponent,
+        ConfirmDialogComponent
     ],
     exports: [
         ContentHeaderComponent,
         ToolbarComponent,
         WaferComponent,
-        TimelineComponent
+        TimelineComponent,
+        ConfirmDialogComponent
     ],
     providers: []
 } )

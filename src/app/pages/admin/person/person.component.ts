@@ -25,11 +25,6 @@ export class PersonComponent implements OnInit, AfterViewInit {
   actions = []
 
   ngAfterViewInit(): void {
-    /* this.personSerive.getPersons().then(data =>{
-      if(data.code === 200){
-        this.persons  =  data.data;
-      }
-    }) */
 
   }
 
@@ -45,7 +40,6 @@ export class PersonComponent implements OnInit, AfterViewInit {
   onBtnClick(value: any) {
     this._setMode('view');
     if (value === 'success') {
-      //this._setMode('view');
       this.refresh();
     }
 
@@ -147,16 +141,22 @@ export class PersonComponent implements OnInit, AfterViewInit {
           targets: 5,
           render: function (data, type, full, meta) {
             if (data === 'No') {
-              return '<a href="javascript:void(0)" onclick="' + that._createUser() + '">Create User</a>';
+              return '<a href="javascript:void(0)" onclick="">Create User</a>';
             }
           }
         }
       ]
     })
+    // $('#t_person').on('click', 'td', function () {
+    //   alert(table.cell(this).data());
+    // });
+    // $('#t_person').on('click', 'tr', function () {
+    //   alert(table.row(this).data());
+    // });
   }
 
   _createUser() {
-
+    console.log('asdas');
   }
   _hasUser(value: any) {
     if (!value)

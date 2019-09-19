@@ -5,10 +5,13 @@
     <div class="box box-primary">
         <app-toolbar [actions]="actions" (onAction)="onToorBarAction($event)"></app-toolbar>
         <div class="box-body">
+            <!-- <app-cu-key-factor></app-cu-key-factor> -->
             <table id="key_factor" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Key Factor</th>
+                        <th>ID</th>
+                        <th>Factor Key</th>
+                        <th>Factor Name</th>
                         <th>Event</th>
                     </tr>
                 </thead>
@@ -19,4 +22,6 @@
         </div>
     </div>
 </section>
+<!-- <app-confirm-dialog></app-confirm-dialog> -->
+<app-cu-key-factor></app-cu-key-factor>
 <router-outlet></router-outlet>
