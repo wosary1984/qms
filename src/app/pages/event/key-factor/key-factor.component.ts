@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { ConfirmDialogService } from 'src/app/service/util/confirm-dialog.service';
 import { FactorDataService } from 'src/app/service/data/factor-data.service';
 declare var $: any;
@@ -16,18 +17,19 @@ export class KeyFactorComponent implements OnInit {
   actions = [{
     actionid: 8,
     action: 'create',
+    actionName:'Create Factor',
     sequenceNumber: 2,
     icon: 'fa fa-plus',
     privilege: 'PERSON_WRITE_PRIVILEGE'
   }]
 
-  constructor(private factorDataService: FactorDataService) { }
+  constructor(private factorDataService: FactorDataService, private router: Router) { }
 
   ngOnInit() {
     this._initDataTable();
   }
 
-  onToorBarAction(value: any) {
+  onToorBarAction(value : any) {
     if (value.action === 'create') {
       this._createFactor();
     } else if (value.action === 'cancel') {
@@ -35,13 +37,13 @@ export class KeyFactorComponent implements OnInit {
     }
   }
 
+  refresh() {
+    let table = $('#key_factor').DataTable();
+    table.ajax.reload();
+
+  }
   _createFactor() {
-    let factor = {
-      id: '',
-      key: '',
-      name: '',
-      desc: ''
-    }
+    let factor = { id: '', key: '', name: '', desc: '' }
     const that = this;
     this.factorDataService.sendMessage('create', factor, function (created_factor: any) {
       let data = {
@@ -50,7 +52,8 @@ export class KeyFactorComponent implements OnInit {
       }
       that.factorDataService.createFactor(data).then(back => {
         if (back.code == 200) {
-          console.log(back.data);
+          //console.log(back.data);
+          that.refresh();
         }
         else {
         }
@@ -64,7 +67,7 @@ export class KeyFactorComponent implements OnInit {
   _initDataTable() {
     const that = this;
     let table = $('#key_factor').DataTable({
-      autoWidth: false,
+      autoWidth: true,
       serverSide: true,
       processing: true,
       searching: false, // 自带的搜索
@@ -83,32 +86,31 @@ export class KeyFactorComponent implements OnInit {
       },
       columns: [
         { data: 'id' },
-        { data: 'key' },
         { data: 'name' },
+        { data: 'key' },
         { data: 'count' }
       ],
       columnDefs: [
         {
-          targets: [1, 2, 3],
+          targets: [0,1, 2],
           orderable: false
         },
         {
-          targets: 1,
+          targets: 2,
           render: function (data, type, full, meta) {
-            return '<a href="/factor/event" >' + data + '</a>';
+            return '<a href="javascript:void(0)" >' + data + '</a>';
           }
         }
       ]
     })
     $('#key_factor').on('click', 'tr', function () {
-      var v = table.row(this).data();
-      console.log(v);
+      var f = table.row(this).data();
+      that.router.navigate(['/factor/event'], {
+        queryParams: {
+          key: f.key,
+          factor: f.name
+        }
+      });
     });
   }
-
-  editFactor(key: string) {
-    console.log(key);
-
-  }
-
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FactorDataService } from 'src/app/service/data/factor-data.service';
+declare var $: any;
 
 @Component({
   selector: 'app-main-event',
@@ -7,9 +10,95 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainEventComponent implements OnInit {
 
-  constructor() { }
+  factor: any;
+  key: string;
+  data: any[] = [];
+  actions = [{
+    actionid: 8,
+    action: 'create',
+    actionName: 'Add Event',
+    sequenceNumber: 2,
+    icon: 'fa fa-plus',
+    privilege: ''
+  }]
+
+
+  constructor(private activatedRoute: ActivatedRoute, private factorDataService: FactorDataService) {
+    activatedRoute.queryParams.subscribe(queryParams => {
+      this.key = queryParams.key;
+      //this.factor = queryParams.factor;
+    })
+  }
+
+  onToorBarAction(value: any) {
+    if (value.action === 'create') {
+      this._createEvent();
+    }
+  }
+
+  _createEvent() {
+    let event = { key: this.key, factor: this.factor, eventid: '', title: '', content: '', date: '' }
+    const that = this;
+    this.factorDataService.sendMessage('create', event, function (created_event: any) {
+      let data = {
+        'action': 'create',
+        'event': created_event
+      }
+      that.factorDataService.createEvent(data).then(back => {
+        if (back.code == 200) {
+          that.factor = back.data;
+          that._groupEventsByYear(that.factor);
+        }
+        else {
+        }
+      });
+
+    }, function () {
+    })
+  }
 
   ngOnInit() {
+    this._getFactor(this.key);
+  }
+
+  _getFactor(key) {
+    const that = this;
+    that.factorDataService.getFactor(this.key).then(back => {
+      if (back.code == 200) {
+        that.factor = back.data;
+        that._groupEventsByYear(that.factor);
+      }
+      else {
+      }
+    });
+  }
+
+  _groupEventsByYear(factor) {
+    const that = this;
+    let map = new Map();
+    factor.events.sort(function (a, b) {
+      return a.date > b.date ? 1 : -1;
+
+    }).forEach(element => {
+
+      if (map.get(element.year) === undefined) {
+        map.set(element.year, []);
+      }
+      let group = map.get(element.year);
+      group.push(element);
+
+    });
+    that.data = [];
+    map.forEach(function (key) {
+      that.data.push({ 'year': key[0].year, 'group': true });
+      key.forEach(function (e) {
+        that.data.push(e);
+      });
+      //that.data.push(key);
+      //console.log("key", key)  //输出的是map中的value值
+
+    })
+    //this.data = Array.from(map);
   }
 
 }

@@ -21,7 +21,7 @@ export class FactorDataService extends BaseService {
     let that = this;
     this.subject.next({
       mode: mode,
-      factor: factor,
+      param: factor,
       saveFn:
         function () {
           that.subject.next(); //this will close the modal  
@@ -44,9 +44,21 @@ export class FactorDataService extends BaseService {
     return this.postCommand( url, data, 'Create Factor' );
   }
 
+  createEvent(data):Promise<any>{
+    let path = '/api/event';
+    const url = this.serviceUrl( path );
+    return this.postCommand( url, data, 'Create Event' );
+  }
+
   getFactors():Promise<any>{
     let path = '/api/factor';
     const url = this.serviceUrl( path );
     return this.getCommand(url,'Get Factor List');
+  }
+
+  getFactor(key):Promise<any>{
+    let path = '/api/factor/' +key;
+    const url = this.serviceUrl( path );
+    return this.getCommand(url,'Get Factor');
   }
 }

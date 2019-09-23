@@ -10,6 +10,7 @@ import { KeyFactorComponent } from './key-factor/key-factor.component';
 import { ConfirmDialogService } from 'src/app/service/util/confirm-dialog.service';
 import { CuKeyFactorComponent } from './key-factor/cu-key-factor/cu-key-factor.component';
 import { FactorDataService } from 'src/app/service/data/factor-data.service';
+import { CuEventComponent } from './main-event/cu-event/cu-event.component';
 
 const routes: Routes = [{
     path: '',
@@ -33,7 +34,8 @@ const routes: Routes = [{
     declarations: [
         MainEventComponent,
         KeyFactorComponent,
-        CuKeyFactorComponent
+        CuKeyFactorComponent,
+        CuEventComponent
     ]
 })
 export class EventModule {

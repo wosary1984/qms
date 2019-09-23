@@ -6,6 +6,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WaferComponent } from './wafer/wafer.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { DatepickerComponent } from './control/datepicker/datepicker.component';
 
 @NgModule( {
     imports: [
@@ -17,14 +18,16 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
         ToolbarComponent,
         WaferComponent,
         TimelineComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        DatepickerComponent
     ],
     exports: [
         ContentHeaderComponent,
         ToolbarComponent,
         WaferComponent,
         TimelineComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        DatepickerComponent
     ],
     providers: []
 } )

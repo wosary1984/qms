@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-timeline',
@@ -9,11 +9,23 @@ export class TimelineComponent implements OnInit {
 
   constructor() { }
 
+  private _data: any;
+  @Input() set data(value: any) {
+    this._data = value;
+    //console.log(this._data);
+  }
+  get data(): any {
+    return this._data;
+  }
+
   aEvent: any[];
 
   aYear: any[];
 
+
   ngOnInit() {
+
+    
     this.aEvent = [];
 
     this.aEvent.push(
@@ -37,17 +49,17 @@ export class TimelineComponent implements OnInit {
           'kaboodle quora plaxo ideeli hulu weebly balihoo...',
         img: '', time: '2001/01/01'
       });
-      this.aEvent.push(
-        {
-          group: '2000年',
-          item: true,
-          title: 'event11',
-          content: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\r\n ' +
-            'weebly ning heekya handango imeem plugg dopplr jibjab, \r\n ' +
-            'movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo ' +
-            'kaboodle quora plaxo ideeli hulu weebly balihoo...',
-          img: '', time: '2001/01/01'
-        });
+    this.aEvent.push(
+      {
+        group: '2000年',
+        item: true,
+        title: 'event11',
+        content: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\r\n ' +
+          'weebly ning heekya handango imeem plugg dopplr jibjab, \r\n ' +
+          'movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo ' +
+          'kaboodle quora plaxo ideeli hulu weebly balihoo...',
+        img: '', time: '2001/01/01'
+      });
     this.aEvent.push(
       {
         group: '2001年',

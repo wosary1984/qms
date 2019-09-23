@@ -52,6 +52,7 @@ export class PersonEditComponent implements OnInit {
       width: 'resolve' // need to override the changed default
     });
   }
+
   _initDatePicker() {
     const that = this;
     $('#datepicker').datepicker({
@@ -59,10 +60,7 @@ export class PersonEditComponent implements OnInit {
       autoclose: true
     });
     $("#datepicker").on("changeDate", function () {
-
       that.person.birthdate = $("#datepicker").val();
-      //alert("selected date is " + this.selecteddate);
-
     });
   }
 

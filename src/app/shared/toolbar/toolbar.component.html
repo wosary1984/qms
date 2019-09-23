@@ -3,7 +3,7 @@
     <li><i class="fa fa-pagelines" aria-hidden="true"></i></li>
     <li *ngFor="let action of actions">
       <a (click)="onClick(action.action)" class="btn btn-xs" data-toggle="tooltip" title="{{action.action}}">
-        <span><i class="{{action.icon}}"></i> {{action.action|uppercase}}</span>
+        <span><i class="{{action.icon}}"></i> {{action.actionName|uppercase}}</span>
       </a>
     </li>
   </ul>
