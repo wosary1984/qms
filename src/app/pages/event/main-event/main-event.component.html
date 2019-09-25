@@ -1,8 +1,8 @@
 <app-content-header [sTitle]="factor?.name" [sSmallTitle]="smallTitle" [sPath]="sPath"></app-content-header>
-<div class="box box-primary">
+<div class="box box-primary" style="background: rgba(0,0,0,0);">
     <div class="box-body">
         <app-toolbar [actions]="actions" (onAction)="onToorBarAction($event)"></app-toolbar>
-        <app-timeline [data]="data"></app-timeline>
+        <app-timeline [data]="data" (onAction)="onTimelineAction($event)"></app-timeline>
     </div>
 </div>
 <app-cu-event></app-cu-event>

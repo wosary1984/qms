@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-timeline',
@@ -9,6 +9,8 @@ export class TimelineComponent implements OnInit {
 
   constructor() { }
 
+  @Output() onAction: EventEmitter<any> = new EventEmitter();
+
   private _data: any;
   @Input() set data(value: any) {
     this._data = value;
@@ -18,71 +20,32 @@ export class TimelineComponent implements OnInit {
     return this._data;
   }
 
-  aEvent: any[];
+  displayDate(bc, date1, date2) {
+    if (!bc && date1 !== null) {
+      return new Date(date1).toLocaleString();
+    } else if (bc && date2 !== null) {
+      return '公元前' + date2 + '年';
+    }
+  }
 
-  aYear: any[];
-
+  displayYear(bc, date2) {
+    if (bc) {
+      return '公元前' + date2 + '年';
+    }
+    else {
+      return '公元' + date2 + '年';
+    }
+  }
 
   ngOnInit() {
 
-    
-    this.aEvent = [];
+  }
 
-    this.aEvent.push(
+  onClick(action: any, key) {
+    this.onAction.emit(
       {
-        group: '2000年',
-        item: false,
-        title: '',
-        content: '',
-        img: '',
-        time: '2000/01/01'
-      });
-
-    this.aEvent.push(
-      {
-        group: '2000年',
-        item: true,
-        title: 'event1',
-        content: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\r\n ' +
-          'weebly ning heekya handango imeem plugg dopplr jibjab, \r\n ' +
-          'movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo ' +
-          'kaboodle quora plaxo ideeli hulu weebly balihoo...',
-        img: '', time: '2001/01/01'
-      });
-    this.aEvent.push(
-      {
-        group: '2000年',
-        item: true,
-        title: 'event11',
-        content: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\r\n ' +
-          'weebly ning heekya handango imeem plugg dopplr jibjab, \r\n ' +
-          'movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo ' +
-          'kaboodle quora plaxo ideeli hulu weebly balihoo...',
-        img: '', time: '2001/01/01'
-      });
-    this.aEvent.push(
-      {
-        group: '2001年',
-        item: false,
-        title: 'event2',
-        content: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu weebly balihoo...',
-        img: '', time: '2001/01/01'
-      });
-    this.aEvent.push(
-      {
-        group: '2001',
-        item: true,
-        title: 'event2',
-        content: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu weebly balihoo...',
-        img: '', time: '2001/01/01'
-      });
-    this.aEvent.push(
-      {
-        group: '2001',
-        item: true,
-        title: 'event3',
-        content: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu weebly balihoo...',
-        img: '', time: '2001/01/01'
+        action: action,
+        key: key
       });
   }
 

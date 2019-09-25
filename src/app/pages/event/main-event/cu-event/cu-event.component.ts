@@ -26,4 +26,8 @@ export class CuEventComponent implements OnInit, AfterViewInit {
   DateChange(value: any){
     this.message.param.date = value.date;
   }
+
+  onClickCheckBox( $event ) {
+    let checked = $event.target.checked;
+}
 }

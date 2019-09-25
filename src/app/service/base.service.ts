@@ -20,6 +20,26 @@ export class BaseService {
         const url = RemoteServiceConfig.host + RemoteServiceConfig.contextpath + requestUrl;
         return url;
     }
+    protected deleteCommand( url: string,  functionName: string ): Promise<any> {
+        return this.http.delete( url,  { observe: 'response', withCredentials: true } )
+            .toPromise()
+            .then( res => {
+                const status: number = res.status; 
+                if ( status === 200 ) {
+                    const back = {
+                        code: status,
+                        data: res.body
+                    }
+                    return back;
+                } else {
+                    const back = {
+                        code: status
+                    }
+                    return back;
+                }
+            } )
+            .catch(( error: any ) => this.handleError( functionName, error ) );
+    }
 
     protected postCommand( url: string, data: string, functionName: string ): Promise<any> {
         return this.http.post( url, data, { observe: 'response', withCredentials: true } )

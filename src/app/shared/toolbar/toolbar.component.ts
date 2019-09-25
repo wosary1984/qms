@@ -12,21 +12,21 @@ export class ToolbarComponent implements OnInit {
   @Input() title: string = 'test';
 
   @Output() onAction: EventEmitter<any> = new EventEmitter();
-  
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  onClick( value: any ) {
+  onClick(value: any) {
     this.onAction.emit(
-        {
-            action: value
-        } );
-}
+      {
+        action: value
+      });
+  }
 
-  onSubmit( value: any ) {
-    this.onAction.emit( value );
+  onSubmit(value: any) {
+    this.onAction.emit(value);
   }
 
 }

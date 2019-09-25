@@ -30,14 +30,31 @@ export class MainEventComponent implements OnInit {
     })
   }
 
-  onToorBarAction(value: any) {
-    if (value.action === 'create') {
+  onToorBarAction(param: any) {
+    if (param.action === 'create') {
       this._createEvent();
     }
   }
+  onTimelineAction(param:any){
+    if (param.action === 'delete') {
+      this._deleteEvent(param.key);
+    }
+  }
+
+  _deleteEvent(key){
+    const that = this;
+    that.factorDataService.deleteEvent(key).then(back => {
+      if (back.code == 200) {
+        that.factor = back.data;
+        that._groupEventsByYear(that.factor);
+      }
+      else {
+      }
+    });
+  }
 
   _createEvent() {
-    let event = { key: this.key, factor: this.factor, eventid: '', title: '', content: '', date: '' }
+    let event = { key: this.key, factor: this.factor, eventid: '', title: '', content: '', date: '', bc: false }
     const that = this;
     this.factorDataService.sendMessage('create', event, function (created_event: any) {
       let data = {
@@ -77,7 +94,8 @@ export class MainEventComponent implements OnInit {
     const that = this;
     let map = new Map();
     factor.events.sort(function (a, b) {
-      return a.date > b.date ? 1 : -1;
+
+      return ((a.year + a.month + a.day) * (a.bc ? -1 : 1)) > ((b.year + b.month + b.day) * (b.bc ? -1 : 1)) ? 1 : -1;
 
     }).forEach(element => {
 
@@ -90,15 +108,12 @@ export class MainEventComponent implements OnInit {
     });
     that.data = [];
     map.forEach(function (key) {
-      that.data.push({ 'year': key[0].year, 'group': true });
+      that.data.push({ 'year': key[0].year, 'group': true, 'bc': key[0].bc });
       key.forEach(function (e) {
         that.data.push(e);
       });
-      //that.data.push(key);
-      //console.log("key", key)  //输出的是map中的value值
 
     })
-    //this.data = Array.from(map);
   }
 
 }

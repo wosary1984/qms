@@ -3,15 +3,18 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="timeline">
-
                 <li *ngFor="let d of data" [ngClass]="{'time-label':true === d.group}">
-                    <span *ngIf="d.group" class="bg-green">{{d.year}}年</span>
+                    <span *ngIf="d.group" class="bg-green">{{displayYear(d.bc,d.year)}}</span>
                     <i *ngIf="!d.group" class="fa fa-tint bg-gray"></i>
                     <div *ngIf="!d.group" class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i>{{d.date}}</span>
+                        <span class="time"><i class="fa fa-clock-o"></i>{{displayDate(d.bc,d.date, d.year)}} </span>
                         <h3 class="timeline-header"><a href="#">{{d.title}}</a></h3>
                         <div class="timeline-body" style="white-space:pre-wrap">
                             <div>{{d.content}} </div>
+                        </div>
+                        <div class="timeline-footer">
+                            <a class="btn btn-primary btn-xs">Read more</a>
+                            <a class="btn btn-warning btn-xs" (click)="onClick('delete',d.eventid)">Delete</a>
                         </div>
                     </div>
                 </li>

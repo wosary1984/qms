@@ -17,7 +17,7 @@ export class HttpxsrfinterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpResponse<any> | HttpEvent<any>> {
         const headerName = 'X-CSRF-TOKEN';
 
-        if (req.method == 'POST' || req.method == 'PUT') {
+        if (req.method == 'POST' || req.method == 'PUT' ||req.method == 'DELETE') {
             if (this.service.userAuth != null && this.service.userAuth.xsrfToken ) {
                 let token = this.service.userAuth.xsrfToken;
                 if (token !== null && !req.headers.has(headerName)) {
