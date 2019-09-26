@@ -35,13 +35,21 @@ export class MainEventComponent implements OnInit {
       this._createEvent();
     }
   }
-  onTimelineAction(param:any){
+  onTimelineAction(param: any) {
     if (param.action === 'delete') {
-      this._deleteEvent(param.key);
+      this._deleteEvent(param.value);
+    }
+    else if (param.action === 'tag') {
+      //alert ('sdasd');
+    }
+    else if (param.action === 'edit') {
+      //console.log(param.value)
+      let evt = param.value;
+      this._editEvent(evt);
     }
   }
 
-  _deleteEvent(key){
+  _deleteEvent(key) {
     const that = this;
     that.factorDataService.deleteEvent(key).then(back => {
       if (back.code == 200) {
@@ -53,7 +61,34 @@ export class MainEventComponent implements OnInit {
     });
   }
 
+  _editEvent(value) {
+    if (!value)
+      return;
+    let event = value; event.factor = null;
+    //console.log(JSON.stringify(value));
+    let edit_event = JSON.parse(JSON.stringify(value)); edit_event.factor = this.factor;
+    const that = this;
+    this.factorDataService.sendMessage('edit', edit_event, function (updated_event: any) {
+      let data = {
+        'action': 'edit',
+        'event': updated_event
+      }
+      // that.factorDataService.createEvent(data).then(back => {
+      //   if (back.code == 200) {
+      //     that.factor = back.data;
+      //     that._groupEventsByYear(that.factor);
+      //   }
+      //   else {
+      //   }
+      // });
+
+    }, function () {
+    })
+  }
+
   _createEvent() {
+    if (!this.key)
+      return;
     let event = { key: this.key, factor: this.factor, eventid: '', title: '', content: '', date: '', bc: false }
     const that = this;
     this.factorDataService.sendMessage('create', event, function (created_event: any) {
@@ -79,6 +114,8 @@ export class MainEventComponent implements OnInit {
   }
 
   _getFactor(key) {
+    if (!key)
+      return;
     const that = this;
     that.factorDataService.getFactor(this.key).then(back => {
       if (back.code == 200) {

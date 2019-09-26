@@ -4,21 +4,27 @@
         <div class="col-md-12">
             <ul class="timeline">
                 <li *ngFor="let d of data" [ngClass]="{'time-label':true === d.group}">
-                    <span *ngIf="d.group" class="bg-green">{{displayYear(d.bc,d.year)}}</span>
+                    <span *ngIf="d.group" class="bg-gray">{{displayYear(d.bc,d.year)}}</span>
                     <i *ngIf="!d.group" class="fa fa-tint bg-gray"></i>
                     <div *ngIf="!d.group" class="timeline-item">
                         <span class="time"><i class="fa fa-clock-o"></i>{{displayDate(d.bc,d.date, d.year)}} </span>
                         <h3 class="timeline-header"><a href="#">{{d.title}}</a></h3>
                         <div class="timeline-body" style="white-space:pre-wrap">
-                            <div>{{d.content}} </div>
+                            <div>
+                                <p>{{d.content}} </p>
+                            </div>
+                            <div>
+                                <a class="btn btn-xs" *ngFor="let r of d.relatedFactors"
+                                    (click)="onClick('tag',r.key)"><span style="margin-right: 3px;"
+                                        class="label label-success">{{r.key}}</span></a>
+                            </div>
                         </div>
                         <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Read more</a>
-                            <a class="btn btn-warning btn-xs" (click)="onClick('delete',d.eventid)">Delete</a>
+                            <a class="btn btn-xs" (click)="onClick('edit',d)"><i class="fa fa-commenting-o"></i></a>
+                            <a class="btn btn-xs" (click)="onClick('delete',d.eventid)"><i class="fa fa-times"></i></a>
                         </div>
                     </div>
                 </li>
-
                 <!-- <li *ngFor="let event of aEvent" [ngClass]="{'time-label':false === event.item}">
                     <span *ngIf="!event.item" class="bg-green">{{event.group}}</span>
                     <i *ngIf="event.item" class="fa fa-tint bg-gray"></i>

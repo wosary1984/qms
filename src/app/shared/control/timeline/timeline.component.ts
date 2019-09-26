@@ -41,11 +41,11 @@ export class TimelineComponent implements OnInit {
 
   }
 
-  onClick(action: any, key) {
+  onClick(action: any, value) {
     this.onAction.emit(
       {
         action: action,
-        key: key
+        value: value
       });
   }
 

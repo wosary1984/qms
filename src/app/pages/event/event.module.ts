@@ -11,6 +11,7 @@ import { ConfirmDialogService } from 'src/app/service/util/confirm-dialog.servic
 import { CuKeyFactorComponent } from './key-factor/cu-key-factor/cu-key-factor.component';
 import { FactorDataService } from 'src/app/service/data/factor-data.service';
 import { CuEventComponent } from './main-event/cu-event/cu-event.component';
+import { TagsComponent } from './tags/tags.component';
 
 const routes: Routes = [{
     path: '',
@@ -20,6 +21,10 @@ const routes: Routes = [{
 {
     path: 'event',
     component: MainEventComponent
+},
+{
+    path: 'tags',
+    component: TagsComponent
 }
 ];
 
@@ -30,12 +35,13 @@ const routes: Routes = [{
         CommonModule,
         FormsModule
     ],
-    providers: [ ConfirmDialogService,FactorDataService],
+    providers: [ConfirmDialogService, FactorDataService],
     declarations: [
         MainEventComponent,
         KeyFactorComponent,
         CuKeyFactorComponent,
-        CuEventComponent
+        CuEventComponent,
+        TagsComponent
     ]
 })
 export class EventModule {

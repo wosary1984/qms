@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 *ngIf="message?.mode == 'create'" class="modal-title title-font">{{message.param.factor.name}}</h4>
+                <h4 class="modal-title title-font">{{message.param.factor.name}}</h4>
             </div>
             <div class="box box-primary" [ngStyle]="{'display':visible}">
                 <form class="form-horizontal">
@@ -12,22 +12,22 @@
                         <div class="form-group">
                             <label class="col-sm-2">事件主体</label>
                             <div class=" col-sm-10">
-                                <input [ngModel]="message?.param.key" type="text" class="form-control" name="factorKey"
-                                    disabled="true">
+                                <input [ngModel]="message?.param.factor.key" type="text" class="form-control"
+                                    name="factorKey" disabled="true">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2" for="eventTitle">事件</label>
                             <div class=" col-sm-10">
                                 <input [(ngModel)]="message?.param.title" type="text" class="form-control"
-                                    name="eventTitle" placeholder="Enter Title">
+                                    name="eventTitle" placeholder="Enter Title" [disabled]="message?.mode === 'edit'">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2" for="bc">公元前</label>
                             <div class=" col-sm-10">
                                 <input type="checkbox" (click)="onClickCheckBox($event)" name="bc"
-                                    [(ngModel)]="message?.param.bc">
+                                    [(ngModel)]="message?.param.bc" >
                             </div>
 
                         </div>
@@ -35,7 +35,7 @@
                             <label class="col-sm-2">事件时间</label>
                             <div class=" col-sm-10">
                                 <div *ngIf="!message?.param.bc">
-                                    <app-datepicker (onDateChange)="DateChange($event)"></app-datepicker>
+                                    <app-datepicker [date]="message?.param.date" (onDateChange)="DateChange($event)"></app-datepicker>
                                 </div>
                                 <div *ngIf="message?.param.bc" class="input-group">
                                     <span class="input-group-addon">公元前</span>

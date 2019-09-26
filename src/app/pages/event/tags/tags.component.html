@@ -1,0 +1,7 @@
+<app-content-header [sTitle]="'Tags'" [sSmallTitle]="smallTitle" [sPath]="sPath"></app-content-header>
+<div class="box box-primary">
+    <div class="box-body no-padding">
+        <app-toolbar [actions]="actions" (onAction)="onToorBarAction($event)"></app-toolbar>
+        <app-datatable></app-datatable>
+    </div>
+</div>

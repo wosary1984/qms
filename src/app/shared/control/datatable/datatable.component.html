@@ -1,0 +1,15 @@
+<div class="table-responsive no-padding">
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th *ngFor="let c of data.columns">{{c}}</th>
+            </tr>
+            <tr *ngFor="let v of data.data">
+                <td>{{v.id}}</td>
+                <td>{{v.name}}</td>
+                <td>{{v.key}}</td>
+                <td><i><span class="label label-success">{{v.count}}</span></i> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
