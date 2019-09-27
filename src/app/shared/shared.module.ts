@@ -8,6 +8,7 @@ import { DatepickerComponent } from './control/datepicker/datepicker.component';
 import { DatatableComponent } from './control/datatable/datatable.component';
 import { TimelineComponent } from './control/timeline/timeline.component';
 import { ToolbarComponent } from './control/toolbar/toolbar.component';
+import { SelectComponent } from './control/select/select.component';
 
 @NgModule( {
     imports: [
@@ -21,7 +22,8 @@ import { ToolbarComponent } from './control/toolbar/toolbar.component';
         TimelineComponent,
         ConfirmDialogComponent,
         DatepickerComponent,
-        DatatableComponent
+        DatatableComponent,
+        SelectComponent
     ],
     exports: [
         ContentHeaderComponent,
@@ -30,7 +32,8 @@ import { ToolbarComponent } from './control/toolbar/toolbar.component';
         TimelineComponent,
         ConfirmDialogComponent,
         DatepickerComponent,
-        DatatableComponent
+        DatatableComponent,
+        SelectComponent
     ],
     providers: []
 } )

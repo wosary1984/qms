@@ -62,6 +62,27 @@ export class BaseService {
             .catch(( error: any ) => this.handleError( functionName, error ) );
     }
 
+    protected putCommand( url: string, data: string, functionName: string ): Promise<any> {
+        return this.http.put( url, data, { observe: 'response', withCredentials: true } )
+            .toPromise()
+            .then( res => {
+                const status: number = res.status; 
+                if ( status === 200 ) {
+                    const back = {
+                        code: status,
+                        data: res.body
+                    }
+                    return back;
+                } else {
+                    const back = {
+                        code: status
+                    }
+                    return back;
+                }
+            } )
+            .catch(( error: any ) => this.handleError( functionName, error ) );
+    }
+
     protected postBlobCommand( url: string, data: any, functionName: string ): Promise<any> {
         return this.http.post( url, data, { observe: 'response', responseType: 'blob', withCredentials: true } )
             .toPromise()

@@ -50,6 +50,12 @@ export class FactorDataService extends BaseService {
     return this.postCommand( url, data, 'Create Event' );
   }
 
+  updateEvent(data):Promise<any>{
+    let path = '/api/event';
+    const url = this.serviceUrl( path );
+    return this.putCommand( url, data, 'Create Event' );
+  }
+
   deleteEvent(key):Promise<any>{
     let path = '/api/event/'+key;
     const url = this.serviceUrl( path );

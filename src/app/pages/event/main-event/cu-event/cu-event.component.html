@@ -10,32 +10,33 @@
                 <form class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="col-sm-2">事件主体</label>
-                            <div class=" col-sm-10">
+                            <label class="col-sm-3">事件主体</label>
+                            <div class=" col-sm-9">
                                 <input [ngModel]="message?.param.factor.key" type="text" class="form-control"
                                     name="factorKey" disabled="true">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="eventTitle">事件</label>
-                            <div class=" col-sm-10">
+                            <label class="col-sm-3" for="eventTitle">事件</label>
+                            <div class=" col-sm-9">
                                 <input [(ngModel)]="message?.param.title" type="text" class="form-control"
                                     name="eventTitle" placeholder="Enter Title" [disabled]="message?.mode === 'edit'">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="bc">公元前</label>
-                            <div class=" col-sm-10">
+                            <label class="col-sm-3" for="bc">公元前</label>
+                            <div class=" col-sm-9">
                                 <input type="checkbox" (click)="onClickCheckBox($event)" name="bc"
-                                    [(ngModel)]="message?.param.bc" >
+                                    [(ngModel)]="message?.param.bc">
                             </div>
 
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2">事件时间</label>
-                            <div class=" col-sm-10">
+                            <label class="col-sm-3">事件时间</label>
+                            <div class=" col-sm-9">
                                 <div *ngIf="!message?.param.bc">
-                                    <app-datepicker [date]="message?.param.date" (onDateChange)="DateChange($event)"></app-datepicker>
+                                    <app-datepicker [date]="message?.param.date" (onDateChange)="DateChange($event)">
+                                    </app-datepicker>
                                 </div>
                                 <div *ngIf="message?.param.bc" class="input-group">
                                     <span class="input-group-addon">公元前</span>
@@ -45,15 +46,33 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2" for="eventContent">Event Content</label>
-                            <div class=" col-sm-10">
+                            <label class="col-sm-3" for="eventContent">事件描述</label>
+                            <div class=" col-sm-9">
                                 <textarea [(ngModel)]="message?.param.content" name="eventContent" class="form-control"
                                     rows="5" placeholder="Enter Event Content"></textarea>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">相关主体</label>
+                            <div class="col-sm-9">
+                                <app-select [data]="selectOptions" (select2change)="select2change($event)"></app-select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3"></label>
+                            <div class="col-sm-9">
+                                <a class="btn btn-xs" *ngFor="let r of message.param.relatedFactors">
+                                    <span style="margin-right: 3px;" class="label label-success">{{r.key}}</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </form>
+
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal"
                     (click)="message.cancelFn()">Close</button>

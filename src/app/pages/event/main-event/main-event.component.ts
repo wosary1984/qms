@@ -73,14 +73,14 @@ export class MainEventComponent implements OnInit {
         'action': 'edit',
         'event': updated_event
       }
-      // that.factorDataService.createEvent(data).then(back => {
-      //   if (back.code == 200) {
-      //     that.factor = back.data;
-      //     that._groupEventsByYear(that.factor);
-      //   }
-      //   else {
-      //   }
-      // });
+      that.factorDataService.updateEvent(data).then(back => {
+        if (back.code == 200) {
+          that.factor = back.data;
+          that._groupEventsByYear(that.factor);
+        }
+        else {
+        }
+      });
 
     }, function () {
     })

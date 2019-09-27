@@ -67,7 +67,7 @@ export class KeyFactorComponent implements OnInit {
   _initDataTable() {
     const that = this;
     let table = $('#key_factor').DataTable({
-      autoWidth: true,
+      autoWidth: false,
       serverSide: true,
       processing: true,
       searching: false, // 自带的搜索
