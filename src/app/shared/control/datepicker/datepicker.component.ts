@@ -12,10 +12,12 @@ export class DatepickerComponent implements OnInit {
   private _date: any;
 
   @Input() set date(value) {
-    if (value) {
-      let d = new Date(value);
-      this._date = d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
-    }
+    this._date = value;
+    // if (value) {
+    //   let d = new Date(value);
+    //   value = d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+    //   this._date = value;
+    // }
   };
   get date(): any {
     return this._date;

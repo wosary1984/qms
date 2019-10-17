@@ -27,8 +27,10 @@
                         <div class="form-group">
                             <label for="desc" class="control-label">Desc</label>
                             <div>
-                                <input type="text" class="form-control" name="desc" placeholder="Desc"
-                                    [(ngModel)]="message?.param.desc">
+                                <textarea [(ngModel)]="message?.param.desc" name="desc" class="form-control" rows="5"
+                                    placeholder=""></textarea>
+                                <!-- <input type="text" class="form-control" name="desc" placeholder="Desc"
+                                    [(ngModel)]="message?.param.desc"> -->
                             </div>
                         </div>
                     </div>

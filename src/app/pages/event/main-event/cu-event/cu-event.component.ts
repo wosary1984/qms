@@ -70,4 +70,8 @@ export class CuEventComponent implements OnInit, AfterViewInit {
     })
     that.message.param.relatedFactors = rf;
   }
+
+  format(date){
+    return date;
+  }
 }
