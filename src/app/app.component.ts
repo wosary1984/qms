@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent {
 
-  //slove deel link issue, when deploy application to tomcat
+  //slove deep link issue, when deploy application to tomcat
   //tomcat rewrite rule will change deep link path = URI
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     activatedRoute.queryParams.subscribe(queryParams => {
